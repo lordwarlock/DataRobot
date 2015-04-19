@@ -1,0 +1,22 @@
+analysis.py			read training and testing data and output specific format
+weka_regression.py		script for using WEKA to train models and output the results
+				Sample:
+                        	python weka_regression.py /weka/ /results/new_bagging_smo_rbf_filtered/ 8 10 weka.classifiers.meta.Bagging -P 100 -S 1 -num-slots 1 -I 30 -W weka.classifiers.functions.SMOreg -- -C 1 -N 0 -I "weka.classifiers.functions.supportVector.RegSMOImproved -T 0.001 -V -P 1.0E-12 -L 0.001 -W 1" -K "weka.classifiers.functions.supportVector.RBFKernel -G 0.01 -C 250007"
+				python weka_regression.py /data_dir/ /output_dir/ start_no end_no weka_algorithm weka_options
+                        	where all the data files are named as r'[0-9]+_train.arff', start_no and end_no is the number of each file.
+
+weka_regression_prune.py	script for tuning parameter
+				Sample:
+				python weka_regression_prune.py /weka/ /results/new_bagging_smo_rbf_filtered/ 8 10 weka.classifiers.meta.Bagging -P 100 -S 1 -num-slots 1 -I -W weka.classifiers.functions.SMOreg -- -C 1 -N 0 -I "weka.classifiers.functions.supportVector.RegSMOImproved -T 0.001 -V -P 1.0E-12 -L 0.001 -W 1" -K "weka.classifiers.functions.supportVector.RBFKernel -G 0.01 -C 250007" 7 1 2
+
+				python weka_regression.py /data_dir/ /output_dir/ start_no end_no weka_algorithm weka_options option_offset para_start para_end
+
+				tune parameter at option_offset, try values from para_start to para_end
+
+summarize.py			show Mean absolute error,Root mean squared error,Relative absolute error,Root relative squared error recorded in log files in the results directory
+
+				python summarize.py ./results/new_bagging_smo_rbf_filtered/
+
+
+Data				https://www.kaggle.com/c/restaurant-revenue-prediction
+				contains information about restaurants and its revenue.
