@@ -108,7 +108,7 @@ class DataAnalysis(object):
             #filter
             _ = [header_list.pop(1-i+filter_list[i]) for i in range(len(filter_list))]
             for line in body_list:
-                _ = [line.pop(x) for x in filter_list]
+                _ = [line.pop(-i+filter_list[i]) for i in range(len(filter_list))]
             #output
             f_o.write('\n'.join(header_list) + '\n')
             f_o.write('\n'.join([','.join(line) for line in body_list]))
